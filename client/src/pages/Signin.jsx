@@ -14,6 +14,7 @@ import {
   signInStart,
   signInSuccess
 } from '../redux/userSlice.js'
+import { toast } from 'react-toastify'
 
 
 function Signin () {
@@ -53,6 +54,7 @@ function Signin () {
       }
       dispatch(signInSuccess(res.data))
       navigate('/home')
+      toast.success("Welcome")
     } catch (error) {
       console.log(error)
       dispatch(signInFailure(error))

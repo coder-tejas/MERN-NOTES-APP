@@ -5,9 +5,9 @@ import { PasswordInput } from '../components/PasswordInfo'
 import { validateEmail } from '../utils/helper'
 // import { handleSuccess } from '../utils/helper'
 import { useNavigate } from 'react-router-dom'  
-import Navbar from '../components/Navbar'
+// import Navbar from '../components/Navbar'
 import axios from 'axios'
-
+import { toast } from 'react-toastify'
 export const  Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -48,6 +48,8 @@ export const  Signup = () => {
       }
     setError("")
     navigate("/login")
+    toast.success("Welcome")
+
     } catch (error) {
       console.log(error)
       setError('An error occurred during signup. Please try again.')

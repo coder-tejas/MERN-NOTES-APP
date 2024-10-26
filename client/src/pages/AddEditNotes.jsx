@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import TagInput from "../components/TagInput"
-import PropTypes from 'prop-types';
 import axios from "axios"
 export const AddEditNotes = ({onClose,type,noteData,getAllNotes}) => {
 
