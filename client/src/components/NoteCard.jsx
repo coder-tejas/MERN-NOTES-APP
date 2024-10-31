@@ -3,7 +3,7 @@ import React from 'react'
 import moment from "moment"
 import {MdCreate, MdOutlinePushPin,MdDelete} from 'react-icons/md'
 // eslint-disable-next-line react/prop-types
-function NoteCard({title,date,isPinned,onPinNote,content,onEdit,onDelete,tags}) {
+export default function NoteCard({title,date,isPinned,onPinNote,content,onEdit,onDelete,tags}) {
     
     return (
         <div className='border rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out'>
@@ -31,4 +31,4 @@ function NoteCard({title,date,isPinned,onPinNote,content,onEdit,onDelete,tags}) 
     )
 }
 
-export default NoteCard
+

@@ -104,7 +104,8 @@ export const getAllNotes = async (req,res,next)=>{
 export const deleteNotes = async (req,res,next) =>{
 
     const noteId = req.params.noteId
-    const note = await NotesModel.deleteOne({_id:noteId,userId:user.id})
+//    console.log(user)
+    const note = await NotesModel.findOne({_id:noteId,userId:req.user.id})
 
     if (!note) {
         return res.status(404).json({
@@ -114,6 +115,10 @@ export const deleteNotes = async (req,res,next) =>{
     }
     try{
         await NotesModel.deleteOne({_id:noteId,userId:req.user.id})
+        res.status(200).json({
+            success:true,
+            message:"Note deleted successfully"
+        })
     }catch(error){console.log(error) 
         next(error)}
 
@@ -155,13 +160,16 @@ export const updateNotePinned  = async (req,res,next) =>{
 
 export const searchNote = async (req, res, next) => {
     const { query } = req.query
+    console.log({ query })
   
     if (!query) {
+      // Check for the presence of the search query
       return next(errorHandler(400, "Search query is required"))
     }
   
     try {
-      const matchingNotes = await Note.find({
+      // Search for notes that match the query in title or content, case-insensitive
+      const matchingNotes = await NotesModel.find({
         userId: req.user.id,
         $or: [
           { title: { $regex: new RegExp(query, "i") } },
@@ -169,12 +177,17 @@ export const searchNote = async (req, res, next) => {
         ],
       })
   
+      // Respond with the matching notes, or an empty array if none found
       res.status(200).json({
         success: true,
-        message: "Notes matching the search query retrieved successfully",
+        message: matchingNotes.length > 0 
+          ? "Notes matching the search query retrieved successfully"
+          : "No notes matching the search query found",
         notes: matchingNotes,
       })
     } catch (error) {
+      console.log(error)
       next(error)
     }
   }
+  

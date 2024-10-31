@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from "react"
-import { getInitials } from "../utils/helper"
+import  {getInitials} from "../utils/helper"
 
 export const ProfileInfo = ({ onLogout, userInfo }) => {
+  // console.log(userInfo || "heheh") 
   return (
     <div className="flex items-center gap-3">
       <div className="w-12 h-12 flex items-center justify-center rounded-full text-slate-950 font-medium bg-slate-100">

@@ -18,7 +18,7 @@ export const  Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault()
-    console.log({ name, email, password })
+    // console.log({ name, email, password })
 
     // Input validation before proceeding with the request
     if (!name) {
